@@ -17,41 +17,40 @@ public class BlockchainController {
 	final Logger logger = LoggerFactory.getLogger(BlockchainController.class);
 
 	public BlockchainController() {
-		
+
 	}
-	
+
 	@Path("/blockchain/invokeRPC")
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	public Response invokeRPC() throws JSONException 
-	{	
+	public Response invokeRPC() throws JSONException {
 		logger.info(">>>ENTERED invokeRPC()");
-		
+
 		Response response = null;
 		BlockchainService blockchainManagerService = null;
 		int responseCode = 200;
 		String responseJsonString = null;
-		
-		String id = null; 
+
+		String id = null;
 		String method = null;
 		List<Object> params = null;
 		blockchainManagerService = new BlockchainService();
-		
-		//hard-code test params for now until we have connectivity
+
+		// hard-code test params for now until we have connectivity
 		id = "1234567890";
 		method = "liststreams";
-		
+
 		try {
 			responseJsonString = blockchainManagerService.invokeRPCWithCloseableHttpClient(id, method, params);
 		} catch (Exception e) {
 			logger.error("Message could not be processed: " + e.getMessage());
 			response = Response.status(422).entity("Message could not be processed: " + e.getMessage()).build();
 		}
-		
+
 		if (response == null) {
 			response = Response.status(responseCode).entity(responseJsonString).build();
 		}
-		
+
 		logger.info("<<<EXITED invokeRPC()");
 		return response;
 	}
