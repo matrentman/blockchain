@@ -17,11 +17,11 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class BlockchainManagerService {
-	final Logger logger = LoggerFactory.getLogger(BlockchainManagerService.class);
+public class BlockchainService {
+	final Logger logger = LoggerFactory.getLogger(BlockchainService.class);
 	public static final String BLOCKCHAIN_NAME = "chain1";
 
-	public BlockchainManagerService() {
+	public BlockchainService() {
 		
 	}
 
